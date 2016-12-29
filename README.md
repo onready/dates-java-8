@@ -2,7 +2,7 @@
 
 Proyecto de ejemplo para ver las distintas maneras de manejar fechas con los dates de Java 8
 
-### Qué nos pasa con las fechas? ###
+### ¿Qué nos pasa con las fechas? ###
 
 El manejo de fechas a veces puede traernos dolores de cabeza a la hora de desarrollar software, más si nos encontramos
 en un entorno donde tenemos que comunicarnos con otras aplicaciones de las cuales consumimos información.
@@ -42,7 +42,7 @@ public class Colectivo {
 
 #### Por defecto (branch master)####
 
-Si exponemos nuestra entidad en formato JSON sin configurar nada, jackson automaticamente serializará el local date time de la siguiente forma
+Si exponemos nuestra entidad en formato JSON sin configurar nada, jackson automaticamente serializará el LocalDateTime de la siguiente forma
 
 ```json
 {
@@ -68,7 +68,7 @@ Si exponemos nuestra entidad en formato JSON sin configurar nada, jackson automa
 
 #### Agregando la dependencia de JSR-310 (branch JSR-310) ####
 
-Agregando la siguiente dependencia en maven, Jackson va a comenzar a reconocer los tipos de datos Date y Time como tales.
+Agregando la siguiente dependencia en maven, Jackson va a comenzar a reconocer los tipos de datos de las fechas de Java 8 como tales.
 
 ```xml
 <dependency>
@@ -93,9 +93,9 @@ El formato por defecto cambiará, y el objeto devuelto por la API será el sigui
 }
 ```
 
-#### Agregando una propertie, llegamos al standar (branch ISO-8601) ####
+#### Agregando una property, llegamos al standar (branch ISO-8601) ####
 
-Agregando la siguiente propertie:
+Agregando la siguiente property:
 
 ```java
 spring.jackson.serialization.WRITE_DATES_AS_TIMESTAMPS = false
