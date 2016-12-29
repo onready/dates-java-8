@@ -40,7 +40,7 @@ public class Colectivo {
 }
 ```
 
-#### Por defecto (Branch master)####
+#### Por defecto (branch master)####
 
 Si exponemos nuestra entidad en formato JSON sin configurar nada, jackson automaticamente serializará el local date time de la siguiente forma
 
@@ -66,7 +66,7 @@ Si exponemos nuestra entidad en formato JSON sin configurar nada, jackson automa
 }
 ```
 
-#### Agregando la dependencia de JSR-310 (Branch JSR-310) ####
+#### Agregando la dependencia de JSR-310 (branch JSR-310) ####
 
 Agregando la siguiente dependencia en maven, Jackson va a comenzar a reconocer los tipos de datos Date y Time como tales.
 
@@ -93,14 +93,24 @@ El formato por defecto cambiará, y el objeto devuelto por la API será el sigui
 }
 ```
 
-#### Agregando una propertie, llegamos al standar ####
+#### Agregando una propertie, llegamos al standar (branch ISO-8601) ####
 
 * Agregando la siguiente propertie:
 
 ```java
 spring.jackson.serialization.WRITE_DATES_AS_TIMESTAMPS = false
 ```
-Las fechas se serializarán según el standar *ISO-8601* quedando de la siguiente forma:
+Las fechas se serializarán según el standar *ISO-8601*, quedando el response de la siguiente manera:
+
+```json
+{
+  "linea": 37,
+  "horaDeArribo": "2016-12-29T13:37:19.839"
+}
+```
+
+### Conclusión ###
+No hay una manera 
 
 
 
