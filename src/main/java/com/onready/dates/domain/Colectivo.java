@@ -23,7 +23,4 @@ public class Colectivo {
     public void setHoraDeArribo(LocalDateTime horaDeArribo) {
         this.horaDeArribo = horaDeArribo;
     }
-    
-    
-
 }

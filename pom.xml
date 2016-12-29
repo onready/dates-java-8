@@ -8,7 +8,7 @@
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>fechas-java-8</name>
+    <name>dates</name>
     <description>Proyecto demo para ver los distintos manejos de fechas en Java 8</description>
 
     <parent>
