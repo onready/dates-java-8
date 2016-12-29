@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.onready</groupId>
-    <artifactId>localdate</artifactId>
+    <artifactId>fechas-java-8</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>localdate</name>
+    <name>fechas-java-8</name>
     <description>Proyecto demo para ver los distintos manejos de fechas en Java 8</description>
 
     <parent>
@@ -28,12 +28,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-            <scope>runtime</scope>
         </dependency>
     </dependencies>
 
