@@ -95,12 +95,12 @@ El formato por defecto cambiará, y el objeto devuelto por la API será el sigui
 
 #### Agregando una propertie, llegamos al standar (branch ISO-8601) ####
 
-* Agregando la siguiente propertie:
+Agregando la siguiente propertie:
 
 ```java
 spring.jackson.serialization.WRITE_DATES_AS_TIMESTAMPS = false
 ```
-Las fechas se serializarán según el standar *ISO-8601*, quedando el response de la siguiente manera:
+Las fechas se serializarán según el standar **ISO-8601**, quedando el response de la siguiente manera:
 
 ```json
 {
@@ -110,7 +110,9 @@ Las fechas se serializarán según el standar *ISO-8601*, quedando el response d
 ```
 
 ### Conclusión ###
-No hay una manera 
+La forma que a nosotros nos parece más adecuada para usar es la última, en primer lugar porque nos resulta más facil a la hora de consumirla desde la capa de presentación para mostrarla, ya sea desde Javascript o desde JSP.
+Otra ventaja de usar este standar es que muchos otros sistemas también lo utilizan y entiende como usarlo.
+No creemos que haya que hacerlo si o si de determinada manera, siempre va a terminar dependiendo de la necesidad del negocio.
 
 
 
