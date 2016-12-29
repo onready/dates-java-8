@@ -109,10 +109,23 @@ Las fechas se serializarán según el standar **ISO-8601**, quedando el response
 }
 ```
 
+#### Otras utilidades ####
+
+* Serializar los formatos a demanda agregando la siguiente anotación en los atributos:
+```java
+@JsonFormat(pattern = "yyyy-MM-dd")
+```
+
+* Si queremos que hibernate automaticamente nos pueda mapear este tipo de datos tenemos que agregar la siguiente dependencia:
+```xml
+<dependency>
+	<groupId>org.hibernate</groupId>
+	<artifactId>hibernate-java8</artifactId>
+</dependency>
+```
+
+
 ### Conclusión ###
-La forma que a nosotros nos parece más adecuada para usar es la última, en primer lugar porque nos resulta más facil a la hora de consumirla desde la capa de presentación para mostrarla, ya sea desde Javascript o desde JSP.
-Otra ventaja de usar este standar es que muchos otros sistemas también lo utilizan y entiende como usarlo.
+La forma que a nosotros nos parece más adecuada para usar es la última, una ventaja es que nos resulta más facil a la hora de consumirla desde la capa de presentación para mostrarla, ya sea desde Javascript o desde JSP.
+Otra ventaja de usar este standar es que muchos otros sistemas también lo utilizan y entiende como usarlo, con lo cual facilita la interacción con estos.
 No creemos que haya que hacerlo si o si de determinada manera, siempre va a terminar dependiendo de la necesidad del negocio.
-
-
-
