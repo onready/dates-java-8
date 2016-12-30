@@ -1,20 +1,20 @@
 # Manejo de fechas con Dates de Java 8
 
-Proyecto de ejemplo para ver las distintas maneras de manejar fechas con los dates de Java 8
+Proyecto de ejemplo para ver las distintas maneras de serializar los dates de Java 8 con Jackson.
 
 ### ¿Qué nos pasa con las fechas? ###
 
 El manejo de fechas a veces puede traernos dolores de cabeza a la hora de desarrollar software, más si nos encontramos
 en un entorno donde tenemos que comunicarnos con otras aplicaciones de las cuales consumimos información.
 Si los equipos que se encargan de cada proyecto deciden arbitrariamente como manejar las fechas seguramente nos encontremos con problemas
-a la hora de deserializarlas, y viceverza cuando ellos deban hacerlo desde el formato en el que nosotros las serialicemos porque no 
+a la hora de deserializarlas, y viceversa cuando ellos deban hacerlo desde el formato en el que nosotros las serialicemos porque no 
 siempre vamos a tener la suerte de que todos elijamos el mismo criterio.
 En este proyecto vamos a ver las distintas opciones a tener en cuenta a la hora de concensuar con
 otros equipos.
 
 ### Proyecto de ejemplo ###
 
-Nuestro ejemplo va a ser una aplicacion Spring Boot con Tomcat Embebido,la cual expone a través de una API REST la clase colectivo, donde la hora de arribo está en formato LocalDateTime.
+Nuestro ejemplo va a ser una aplicacion Spring Boot con Tomcat Embebido, la cual expone a través de una API REST la clase colectivo, donde la hora de arribo está en formato LocalDateTime. Al agregar en el pom.xml el parent de Spring Boot automáticamente vamos a estar trayendo la dependencia de Jackson.
 De acuerdo al brach en el que estemos podremos ver como va cambiando la fecha que devolvemos.
 
 ```java
