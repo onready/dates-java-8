@@ -1,4 +1,4 @@
-# Manejo de fechas con Dates de Java 8
+# Manejo de fechas con dates de Java 8
 
 Proyecto de ejemplo para ver las distintas maneras de serializar los dates de Java 8 con Jackson.
 
