@@ -1,53 +1,52 @@
-# Manejo de fechas con dates de Java 8
+# Java 8 dates management
 
-Proyecto de ejemplo para ver las distintas maneras de serializar los dates de Java 8 con Jackson.
+Demo project to show different ways of serializing dates with Jackson 
 
-### ¿Qué nos pasa con las fechas? ###
+### ¿What happens with dates? ###
 
-El manejo de fechas a veces puede traernos dolores de cabeza a la hora de desarrollar software, más si nos encontramos
-en un entorno donde tenemos que comunicarnos con otras aplicaciones de las cuales consumimos información.
-Si los equipos que se encargan de cada proyecto deciden arbitrariamente como manejar las fechas seguramente nos encontremos con problemas
-a la hora de deserializarlas, y viceversa cuando ellos deban hacerlo desde el formato en el que nosotros las serialicemos porque no 
-siempre vamos a tener la suerte de que todos elijamos el mismo criterio.
-En este proyecto vamos a ver las distintas opciones a tener en cuenta a la hora de concensuar con
-otros equipos.
+Sometimes date managements can be a headache at the time of software development, even more if we are working on a
+environment where we communicate with another applications of which we get information.
+If every project team decide differently how to manage dates, probably we are going to find troubles at the time of 
+serializing or deserializing them, because they have to do it with the format that we used when we expose them. In this 
+project we are going to see the different options we have so teams can be agree with one of them.
 
-### Proyecto de ejemplo ###
+### Example project ###
 
-Nuestro ejemplo va a ser una aplicacion Spring Boot con Tomcat Embebido, la cual expone a través de una API REST la clase colectivo, donde la hora de arribo está en formato LocalDateTime. Al agregar en el pom.xml el parent de Spring Boot automáticamente vamos a estar trayendo la dependencia de Jackson.
-De acuerdo al brach en el que estemos podremos ver como va cambiando la fecha que devolvemos.
+Our example is going to be a Spring Boot application with an embedded Tomcat, which exposes a Bus class via an API REST,
+where the arrival time is on LocalDateTime format. Adding Spring Boot as pom.xml parent we are bringing to our project 
+Jackson as dependency. Regarding to the project branch we are, we can see how the date we return can change.
 
 ```java
-public class Colectivo {
+public class Bus {
     
-    private int linea;
-    private LocalDateTime horaDeArribo;
+    private int line;
+    private LocalDateTime arrivalTime;
 
-    public int getLinea() {
-        return linea;
+    public int getLine() {
+        return line;
     }
 
-    public void setLinea(int linea) {
-        this.linea = linea;
+    public void setLine(int line) {
+        this.line = line;
     }
 
-    public LocalDateTime getHoraDeArribo() {
-        return horaDeArribo;
+    public LocalDateTime getArrivalTime() {
+        return arrivalTime;
     }
 
-    public void setHoraDeArribo(LocalDateTime horaDeArribo) {
-        this.horaDeArribo = horaDeArribo;
+    public void setArrivalTime(LocalDateTime arrivalTime) {
+        this.arrivalTime = arrivalTime;
     }
 }
 ```
 
 #### Branch master ####
 
-Por defecto, si no configuramos nada, Jackson automaticamente serializará el LocalDateTime de la siguiente forma:
+By default, if we don't configure anything, Jacksone automatically will serialize LocalDateTime as follows:
 ```json
 {
-  "linea": 37,
-  "horaDeArribo": {
+  "line": 37,
+  "arrivalTime": {
     "month": "DECEMBER",
     "year": 2016,
     "dayOfMonth": 29,
@@ -68,7 +67,7 @@ Por defecto, si no configuramos nada, Jackson automaticamente serializará el Lo
 
 #### Branch JSR-310 ####
 
-Cuando agregamos la siguiente dependencia en maven, Jackson va a comenzar a reconocer los tipos de datos de las fechas de Java 8 como tales.
+When we add the following dependency, Jackson is going to start recognizing Java 8 data date types as they are.
 
 ```xml
 <dependency>
@@ -76,12 +75,12 @@ Cuando agregamos la siguiente dependencia en maven, Jackson va a comenzar a reco
   <artifactId>jackson-datatype-jsr310</artifactId>
 </dependency>
 ```
-El formato por defecto cambiará, y el objeto devuelto por la API será el siguiente:
+Format will change by default, the returned object by the API is going to be this:
 
 ```json
 {
-  "linea": 37,
-  "horaDeArribo": [
+  "line": 37,
+  "arrivalTime": [
     2016,
     12,
     29,
@@ -95,27 +94,28 @@ El formato por defecto cambiará, y el objeto devuelto por la API será el sigui
 
 #### Branch ISO-8601 ####
 
-Finalmente, si a lo anterior le sumamos la siguiente property:
+Finally, if we add the following property to the previous code:
 
 ```java
 spring.jackson.serialization.WRITE_DATES_AS_TIMESTAMPS = false
 ```
-Las fechas se serializarán según el standar **ISO-8601**, quedando el response de la siguiente manera:
+
+Dates are going to be serialize according to the standard **ISO-8601**, leaving the response like this:
 
 ```json
 {
-  "linea": 37,
-  "horaDeArribo": "2016-12-29T13:37:19.839"
+  "line": 37,
+  "arrivalTime": "2016-12-29T13:37:19.839"
 }
 ```
 
-#### Otras utilidades ####
+#### Other utilities ####
 
-* Serializar los formatos a demanda agregando la siguiente anotación en los atributos:
+* Serialize formats on-demand adding the following annotation on the attributes:
 ```java
 @JsonFormat(pattern = "yyyy-MM-dd")
 ```
-* Si queremos que hibernate automaticamente nos pueda mapear este tipo de datos, tenemos que agregar la siguiente dependencia:
+* If we want hibernate to automatically map this data type, we have to add this dependency:
 ```xml
 <dependency>
 	<groupId>org.hibernate</groupId>
@@ -123,7 +123,8 @@ Las fechas se serializarán según el standar **ISO-8601**, quedando el response
 </dependency>
 ```
 
-### Conclusión ###
-La forma que a nosotros nos parece más adecuada y que recomendamos usar es la última, en primer lugar porque nos resulta más facil consumirla desde la capa de presentación para mostrarla, ya sea desde Javascript o desde JSP.
-Y en segundo lugar, que muchos otros sistemas y librerias también lo utilizan, con lo cual facilita la interacción con los primeros y el uso de las segundas.
-Igualmente, no creemos que haya que hacerlo si o si de determinada manera en todos los casos, siempre va a terminar dependiendo de la necesidad del negocio en el que nos encontremos.
+### Conclusion ###
+
+The way we think is better and we suggest to use is the last one, in the first place because is easier to read from the
+frontend. And in the second place, there are a lot of libraries that also use it, which is good for us because it make
+easier the interaction with the first ones and the second ones.
