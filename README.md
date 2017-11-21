@@ -17,28 +17,18 @@ where the arrival time is on LocalDateTime format. Adding Spring Boot as pom.xml
 Jackson as dependency. Regarding to the project branch we are, we can see how the date we return can change.
 
 ```java
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Bus {
     
     private int line;
     private LocalDateTime arrivalTime;
 
-    public int getLine() {
-        return line;
-    }
-
-    public void setLine(int line) {
-        this.line = line;
-    }
-
-    public LocalDateTime getArrivalTime() {
-        return arrivalTime;
-    }
-
-    public void setArrivalTime(LocalDateTime arrivalTime) {
-        this.arrivalTime = arrivalTime;
-    }
 }
 ```
+Note: @Data, @AllArgsConstructor and @NoArgsConstructor are [lombok](https://github.com/rzwitserloot/lombok) 
+annotations, a java preprocessing code framework which help us auto-generating getters, setters, and constructors.
 
 #### Branch master ####
 
